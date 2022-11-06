@@ -8,13 +8,14 @@ const cors = require("cors");
 const app = express();
 
 //constante pour lire les identifiants .env
-if (process.env.NODE_ENV == 'production') {
-  require('dotenv').config();
-}
+// if (process.env.NODE_ENV == 'production') {
+//   require('dotenv').config();
+// }
 
+const dotenv = require('dotenv');
+dotenv.config();
 console.log(process.env.NODE_ENV)
-// const dotenv = require('dotenv');
-// dotenv.config();
+
 
 // constante pour gérer le port émétteur
 const port = process.env.PORT || 8080;
