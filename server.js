@@ -8,14 +8,8 @@ const cors = require("cors");
 const app = express();
 
 //constante pour lire les identifiants .env
-// if (process.env.NODE_ENV == 'production') {
-//   require('dotenv').config();
-// }
-
 const dotenv = require('dotenv');
 dotenv.config();
-console.log(process.env.NODE_ENV)
-
 
 // constante pour gérer le port émétteur
 const port = process.env.PORT || 8080;
@@ -41,32 +35,8 @@ app.use(
   const users = require("./app/controllers/user.controller");
   const messages = require("./app/controllers/message.controller");
   
-  /* ROUTES */
-  // const { Pool } = require('pg');
-  // const pool = new Pool({
-  //   connectionString: process.env.DATABASE_URL,
-  //   ssl: {
-  //     rejectUnauthorized: false
-  //   }
-  // });
-  
-  
-  // app.get('/db', async (req, res) => {
-  //   try {
-  //     const client = await pool.connect();
-  //     const result = await client.query('SELECT * FROM users');
-  //     const results = { 'results': (result) ? result.rows : null};
-  //     // res.render('pages/db', results );
-  //     res.json({ results: results });
-  //     client.release();
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.send("Error " + err);
-  //   }
-  // })
-  
-  
-  
+
+  /* ROUTES */  
   // GET Home -> Tester la réponse du serveur
   app.get('/', (request, response) => {
     // console.log('Hello');

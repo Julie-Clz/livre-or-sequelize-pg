@@ -1,34 +1,34 @@
-const config = require("../config/config");
+const config = require("../config/db.config");
 
-// const Sequelize = require("sequelize");
-// const sequelize = new Sequelize(
-//   config.DB,
-//   config.USER,
-//   config.PASSWORD,
-//   {
-//     host: config.HOST,
-//     dialect: "postgres",
-//     // operatorsAliases: false,
-//     // logging: true,
-//     // pool: {
-//     //   max: config.pool.max,
-//     //   min: config.pool.min,
-//     //   acquire: config.pool.acquire,
-//     //   idle: config.pool.idle
-//     // }
-//   }
-//   );
-
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
+   /* Development Env */
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(
+  config.DB,
+  config.USER,
+  config.PASSWORD,
+  {
+    host: config.HOST,
+    pool: {
+      max: config.pool.max,
+      min: config.pool.min,
+      acquire: config.pool.acquire,
+      idle: config.pool.idle
     }
   }
-);
+  );
+
+
+  /* Production Env */
+// const Sequelize = require('sequelize');
+// const sequelize = new Sequelize(process.env.DATABASE_URL, {
+//     dialectOptions: {
+//       ssl: {
+//         require: true,
+//         rejectUnauthorized: false
+//       }
+//     }
+//   }
+// );
 
 sequelize
   .authenticate()
