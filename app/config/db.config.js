@@ -3,7 +3,7 @@ module.exports = {
   HOST: process.env.DB_HOST || "localhost",
   USER: process.env.DB_USER || "juliecollazos",
   PASSWORD: process.env.DB_PASSWORD || "juliecollazos",
-  DB: process.env.DATA_URL || "testsequelizedb",
+  DB: process.env.DATABASE_URL || "testsequelizedb",
   dialect: 'postgres',
   operatorsAliases: '0',
   pool: {
