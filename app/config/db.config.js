@@ -1,10 +1,9 @@
 module.exports = {
   // development: {
-  HOST: process.env.DB_HOST,
-  HOST: process.env.DB_HOST,
-  USER: process.env.DB_USER,
-  PASSWORD: process.env.DB_PASSWORD,
-  DB: process.env.DB_NAME,
+  HOST: process.env.DB_HOST || "localhost",
+  USER: process.env.DB_USER || "juliecollazos",
+  PASSWORD: process.env.DB_PASSWORD || "juliecollazos",
+  DB: process.env.DATA_URL || "testsequelizedb",
   dialect: 'postgres',
   operatorsAliases: '0',
   pool: {

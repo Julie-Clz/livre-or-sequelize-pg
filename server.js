@@ -8,11 +8,17 @@ const cors = require("cors");
 const app = express();
 
 //constante pour lire les identifiants .env
-const dotenv = require('dotenv');
-dotenv.config();
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+console.log(process.env.NODE_ENV)
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 // constante pour gérer le port émétteur
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 // initialisation cors
 var corsOptions = {
@@ -59,3 +65,23 @@ app.use(
   // db.sequelize.sync({
   //   force: true
   // });
+
+
+// var config = require('config');
+
+// var settings = config.get('Settings');
+// var dbConfig = config.get('Settings.dbConfig');
+// var site = config.get('Settings.site');
+// var siteUrl = config.get('Settings.site.url');
+
+// console.log('\n SETTINGS \n');
+// console.log(settings);
+
+// console.log('\n DBCONFIG \n');
+// console.log(dbConfig);
+
+// console.log('\n SITE \n');
+// console.log(site);
+
+// console.log('\n SITEURL \n');
+// console.log(siteUrl);

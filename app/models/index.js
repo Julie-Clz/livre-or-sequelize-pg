@@ -7,15 +7,15 @@ const sequelize = new Sequelize(
   config.PASSWORD,
   {
     host: config.HOST,
-    dialect: config.dialect,
+    dialect: "postgres",
     // operatorsAliases: false,
     // logging: true,
-    pool: {
-      max: config.pool.max,
-      min: config.pool.min,
-      acquire: config.pool.acquire,
-      idle: config.pool.idle
-    }
+    // pool: {
+    //   max: config.pool.max,
+    //   min: config.pool.min,
+    //   acquire: config.pool.acquire,
+    //   idle: config.pool.idle
+    // }
   }
   );
   
