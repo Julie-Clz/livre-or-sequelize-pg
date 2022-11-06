@@ -2,33 +2,33 @@ const config = require("../config/db.config");
 
    /* Development Env */
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(
-  config.DB,
-  config.USER,
-  config.PASSWORD,
-  {
-    host: config.HOST,
-    pool: {
-      max: config.pool.max,
-      min: config.pool.min,
-      acquire: config.pool.acquire,
-      idle: config.pool.idle
-    }
-  }
-  );
+// const sequelize = new Sequelize(
+//   config.DB,
+//   config.USER,
+//   config.PASSWORD,
+//   {
+//     host: config.HOST,
+//     pool: {
+//       max: config.pool.max,
+//       min: config.pool.min,
+//       acquire: config.pool.acquire,
+//       idle: config.pool.idle
+//     }
+//   }
+//   );
 
 
   /* Production Env */
-// const Sequelize = require('sequelize');
-// const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//     dialectOptions: {
-//       ssl: {
-//         require: true,
-//         rejectUnauthorized: false
-//       }
-//     }
-//   }
-// );
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  }
+);
 
 sequelize
   .authenticate()
