@@ -1,7 +1,7 @@
 const config = require("../config/db.config");
 
    /* Development Env */
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
 // const sequelize = new Sequelize(
 //   config.DB,
 //   config.USER,
