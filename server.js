@@ -42,28 +42,28 @@ app.use(
   const messages = require("./app/controllers/message.controller");
   
   /* ROUTES */
-  const { Pool } = require('pg');
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  });
+  // const { Pool } = require('pg');
+  // const pool = new Pool({
+  //   connectionString: process.env.DATABASE_URL,
+  //   ssl: {
+  //     rejectUnauthorized: false
+  //   }
+  // });
   
   
-  app.get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM users');
-      const results = { 'results': (result) ? result.rows : null};
-      // res.render('pages/db', results );
-      res.json({ results: results });
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
+  // app.get('/db', async (req, res) => {
+  //   try {
+  //     const client = await pool.connect();
+  //     const result = await client.query('SELECT * FROM users');
+  //     const results = { 'results': (result) ? result.rows : null};
+  //     // res.render('pages/db', results );
+  //     res.json({ results: results });
+  //     client.release();
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.send("Error " + err);
+  //   }
+  // })
   
   
   
