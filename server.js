@@ -8,8 +8,7 @@ const cors = require("cors");
 const app = express();
 
 //constante pour lire les identifiants .env
-
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV == 'production') {
   require('dotenv').config();
 }
 
@@ -42,6 +41,31 @@ app.use(
   const messages = require("./app/controllers/message.controller");
   
   /* ROUTES */
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  
+  
+  app.get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM users');
+      const results = { 'results': (result) ? result.rows : null};
+      // res.render('pages/db', results );
+      res.json({ results: results });
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+  
+  
+  
   // GET Home -> Tester la réponse du serveur
   app.get('/', (request, response) => {
     // console.log('Hello');
@@ -65,23 +89,3 @@ app.use(
   // db.sequelize.sync({
   //   force: true
   // });
-
-
-// var config = require('config');
-
-// var settings = config.get('Settings');
-// var dbConfig = config.get('Settings.dbConfig');
-// var site = config.get('Settings.site');
-// var siteUrl = config.get('Settings.site.url');
-
-// console.log('\n SETTINGS \n');
-// console.log(settings);
-
-// console.log('\n DBCONFIG \n');
-// console.log(dbConfig);
-
-// console.log('\n SITE \n');
-// console.log(site);
-
-// console.log('\n SITEURL \n');
-// console.log(siteUrl);
