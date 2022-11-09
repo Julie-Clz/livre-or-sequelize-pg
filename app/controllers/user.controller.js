@@ -7,6 +7,7 @@ const Message = db.messages;
 exports.create = (req, res) => { 
   User.create({  
     username: req.body.username,
+    // image: req.body.image,
     email: req.body.email,
     password: req.body.password
   }).then(user => { 
