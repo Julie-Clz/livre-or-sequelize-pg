@@ -56,7 +56,7 @@ app.use(
   });
   
   // execution de sequelize et création tables si 1ere fois
-  db.sequelize.sync();
-  // db.sequelize.sync({
-  //   force: true
-  // });
+  // db.sequelize.sync();
+  db.sequelize.sync({
+    force: true
+  });
