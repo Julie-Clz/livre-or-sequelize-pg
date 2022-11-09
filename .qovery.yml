@@ -1,0 +1,14 @@
+application:
+  name: my-node-app
+  project: my-first-project
+  publicly_accessible: true
+databases:
+- type: postgresql
+  version: "12"
+  name: my-psql
+routers:
+- name: my-router
+  routes:
+  - application_name: my-node-app
+    paths:
+    - /
