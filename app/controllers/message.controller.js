@@ -10,6 +10,10 @@ exports.create = (req, res) => {
     userId: req.body.userId,
   }).then(message => { 
     res.send(message);
+  })
+  .catch((err) => {
+    console.log(">> Error while creating message: ", err);
+    res.send(err);
   });
 };
 
@@ -19,6 +23,10 @@ exports.findAll = (req, res) => {
     include: ["user"],
   }).then(messages => {
     res.send(messages);
+  })
+  .catch((err) => {
+    console.log(">> Error while fetching messages: ", err);
+    res.send(err);
   });
 };
 
@@ -29,6 +37,10 @@ exports.findByPk = (req, res) => {
   }).then(message => {
     res.send(message);
   })
+  .catch((err) => {
+    console.log(">> Error while fetching message with id: ", req.params.id, err);
+    res.send(err);
+  });
 };
 
 // Update a Message by Id (PUT / UPDATE)
@@ -38,6 +50,10 @@ exports.update = (req, res) => {
     { where: {id: req.params.messageId} }
     ).then(() => {
       res.status(200).send({ message: 'updated successfully a message with id = ' + id });
+    })
+    .catch((err) => {
+      console.log(">> Error while updating message with id: ", req.params.id, err);
+      res.send(err);
     });
   };
   
@@ -48,5 +64,9 @@ exports.update = (req, res) => {
       where: { id: id }
     }).then(() => {
       res.status(200).send({ message: 'deleted successfully a message with id = ' + id });
+    })
+    .catch((err) => {
+      console.log(">> Error while deleting message with id: ", id, err);
+      res.send(err);
     });
   };

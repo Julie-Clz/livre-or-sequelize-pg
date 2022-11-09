@@ -5,17 +5,16 @@ const Message = db.messages;
 
 // POST / CREATE a new User
 exports.create = (req, res) => { 
-  // Save to MySQL database
   User.create({  
     username: req.body.username,
     email: req.body.email,
     password: req.body.password
   }).then(user => { 
-    // Send created user to client
     res.send(user);
   })
   .catch((err) => {
     console.log(">> Error while creating user: ", err);
+    res.send(err);
   });
 };
 
@@ -26,6 +25,10 @@ exports.findAll = (req, res) => {
   }).then(users => {
     // Send all users to Client
     res.send(users);
+  })
+  .catch((err) => {
+    console.log(">> Error while fetching user: ", err);
+    res.send(err);
   });
 };
 
@@ -36,6 +39,10 @@ exports.findByPk = (req, res) => {
   }).then(user => {
     res.send(user);
   })
+  .catch((err) => {
+    console.log(">> Error while fetching user: ", "id:", req.params.id, err);
+    res.send(err);
+  });
 };
 
 // Update a User by Id (PUT / UPDATE)
@@ -45,6 +52,10 @@ exports.update = (req, res) => {
     { where: {id: req.params.userId} }
     ).then(() => {
       res.status(200).send({ message: 'updated successfully a user with id = ' + id });
+    })
+    .catch((err) => {
+      console.log(">> Error while updating user: ","id:", req.params.id, err);
+      res.send(err);
     });
   };
   
@@ -55,5 +66,8 @@ exports.update = (req, res) => {
       where: { id: id }
     }).then(() => {
       res.status(200).send({ message: 'deleted successfully a user with id = ' + id });
+    })
+    .catch((err) => {
+      console.log(">> Error while deleting user with id: ", id, err);
     });
   };
