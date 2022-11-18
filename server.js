@@ -82,10 +82,10 @@ process.on('unhandledRejection', function(reason, promise) {
     });
   }
   // execution de sequelize et création tables si 1ere fois
-  db.sequelize.sync();
-  // db.sequelize.sync({
-  //   force: true
-  // }).then(() => {
-  //   console.log('Drop and resync Db');
-  //   initial();
-  // });
+  // db.sequelize.sync();
+  db.sequelize.sync({
+    force: true
+  }).then(() => {
+    console.log('Drop and resync Db');
+    initial();
+  });
