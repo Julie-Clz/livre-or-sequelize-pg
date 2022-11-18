@@ -5,10 +5,6 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       unique: true
     },
-    // image: {
-    //   type: Sequelize.STRING,
-    //   allowNull: true,
-    // },
     email: {
       type: Sequelize.STRING,
       allowNull: false,

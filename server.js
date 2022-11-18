@@ -16,7 +16,7 @@ const port = process.env.PORT || 8080;
 
 // initialisation cors
 var corsOptions = {
-  origin: "http://localhost:8000"
+  origin: "http://localhost:8081"
 };
 app.use(cors(corsOptions));
 
@@ -27,13 +27,17 @@ app.use(
   express.urlencoded({
     extended: true,
   })
-  );
+);
   
   
   // import modules internes nécessaires
   const db = require("./app/models");
   const users = require("./app/controllers/user.controller");
   const messages = require("./app/controllers/message.controller");
+  const Role = db.role;
+  const User = db.users;
+  const Message = db.messages;
+
   
 
   /* ROUTES */  
@@ -48,15 +52,40 @@ app.use(
   
   /* MESSAGES */
   require('./app/routes/message.routes.js')(app);
+
+  /* AUTHENTICATION */
+  require('./app/routes/auth.routes')(app);
   
-  
+  // Show unhandled rejections
+process.on('unhandledRejection', function(reason, promise) {
+  console.log(promise);
+});
+
   // Ecoute du port
   app.listen(port, "0.0.0.0", () => {
     console.log(`App listening at http://localhost:${port}`);
   });
-  
+
+  // Creates 3 roles needed in db
+  function initial() {
+    Role.create({
+      id: 1,
+      name: "user"
+    });
+    Role.create({
+      id: 2,
+      name: "moderator"
+    });
+    Role.create({
+      id: 3,
+      name: "admin"
+    });
+  }
   // execution de sequelize et création tables si 1ere fois
-  // db.sequelize.sync();
-  db.sequelize.sync({
-    force: true
-  });
+  db.sequelize.sync();
+  // db.sequelize.sync({
+  //   force: true
+  // }).then(() => {
+  //   console.log('Drop and resync Db');
+  //   initial();
+  // });
