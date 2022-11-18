@@ -54,12 +54,8 @@ app.use(
   require('./app/routes/message.routes.js')(app);
 
   /* AUTHENTICATION */
-  require('./app/routes/auth.routes')(app);
+  require('./app/routes/auth.routes.js')(app);
   
-  // Show unhandled rejections
-process.on('unhandledRejection', function(reason, promise) {
-  console.log(promise);
-});
 
   // Ecoute du port
   app.listen(port, "0.0.0.0", () => {

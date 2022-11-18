@@ -13,11 +13,6 @@
     "npm": "8.3.0"
   },
   "keywords": [
-    "node.js",
-    "jwt",
-    "authentication",
-    "express",
-    "postgres"
   ],
   "author": "",
   "license": "ISC",
