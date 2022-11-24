@@ -6,7 +6,7 @@ const Message = db.messages;
 exports.create = (req, res) => { 
   Message.create({  
     content: req.body.content,
-    userId: req.body.userId,
+    userId: parseInt(req.body.userId),
   }).then(message => { 
     res.send(message);
   })
