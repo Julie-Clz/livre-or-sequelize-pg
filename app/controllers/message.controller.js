@@ -45,7 +45,7 @@ exports.findByPk = (req, res) => {
 // Update a Message by Id (PUT / UPDATE)
 exports.update = (req, res) => {
   const id = req.params.messageId;
-  const currentUser = req.userId
+  const currentUser = parseInt(req.body.userId)
 
   Message.findOne({ id: id})
   .then( (message) => {
@@ -70,7 +70,7 @@ exports.update = (req, res) => {
 // Delete a Message by Id (DELETE / DELETE)
 exports.delete = (req, res) => {
   const id = req.params.messageId;
-  const currentUser = req.userId
+  const currentUser = req.body.userId
 
   Message.findOne({ id: id})
   .then( (message) => {
