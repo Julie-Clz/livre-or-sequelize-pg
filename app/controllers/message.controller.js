@@ -71,11 +71,10 @@ exports.delete = (req, res) => {
   const id = req.params.messageId;
   const currentUser = req.body.userId
 
-  Message.findOne({ id: id})
-  .then( (message) => {
+  Message.findByPk(req.params.messageId).then((message) => {
     if (message.userId === currentUser) {
-      Message.destroy({
-        where: { id: id }
+      message.destroy({
+        // where: { id: id }
       }).then(() => {
         res.status(200).send({ message: 'deleted successfully a message with id = ' + id });
       })
