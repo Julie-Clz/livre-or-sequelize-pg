@@ -47,11 +47,10 @@ exports.update = (req, res) => {
   const id = req.params.messageId;
   const currentUser = parseInt(req.body.userId)
 
-  Message.findOne({ id: id })
-  .then( (message) => {
+  Message.findByPk(req.params.messageId).then((message) => {
     if (message.userId === currentUser) {
-      Message.update( { content: req.body.content }, 
-        { where: { id: id }},
+      message.update( { content: req.body.content }
+        // { where: { id: id }},
       ).then( () => {
         res.status(200).send({ message: 'updated successfully a message with id = ' + id });
       })
